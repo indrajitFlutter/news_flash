@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:news_flash/Screens/view/settings.dart';
 import 'package:news_flash/Screens/view/view_all_braeking_news.dart';
 import 'package:news_flash/Screens/view/view_all_trending_news.dart';
-import 'package:news_flash/constants/language_code.dart';
 import '../../commonWidgets/articals_view.dart';
 import '../../commonWidgets/blog_tile.dart';
 import '../../commonWidgets/category_tiles.dart';
@@ -45,6 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
               title: Center(
                   child: Text(
                 Strings.newsFlash,
+                    style: const TextStyle(fontSize: 22,fontWeight: FontWeight.bold),
               )),
               actions: [
                 IconButton(
@@ -100,7 +100,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           const SizedBox(
                             height: 10,
                           ),
-
+                          controller.sliderList.isEmpty?const CircularProgressIndicator():
                           CarouselSlider.builder(
                               itemCount: controller.sliderList.isEmpty ? 0 : controller.sliderList.length,
                               itemBuilder: (context, index, realIndex) {
@@ -150,7 +150,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               ],
                             ),
                           ),
-                          ListView.builder(
+                          controller.articleModelList.isEmpty?const CircularProgressIndicator()
+                          :ListView.builder(
                             shrinkWrap: true,
                             physics: const NeverScrollableScrollPhysics(),
                             itemCount: controller.articleModelList.length,

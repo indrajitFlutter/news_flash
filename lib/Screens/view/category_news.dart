@@ -26,9 +26,11 @@ class _CategoryNewsState extends State<CategoryNews> {
         builder: (controller) {
           return Scaffold(
             appBar: AppBar(
-              title: Text(
-                widget.name,
-                style: const TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 26),
+              title: Center(
+                child: Text(
+                  widget.name,
+                  style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 26),
+                ),
               ),
               centerTitle: true,
             ),
@@ -68,9 +70,9 @@ class ShowCategory extends StatelessWidget {
             ),
           ),
           const SizedBox(height:15),
-          Text(title,style: const TextStyle(fontSize: 18,color: Colors.black,fontWeight: FontWeight.w500),),
+          Text(title,style: const TextStyle(fontSize: 18,fontWeight: FontWeight.w500),),
           const SizedBox(height:5),
-          Text(desc,style: const TextStyle(fontSize: 14,color: Colors.black54,),)
+          Text(desc,style: const TextStyle(fontSize: 14,),)
         ],
       ),
     );

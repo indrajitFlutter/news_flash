@@ -43,7 +43,7 @@ class NewsController extends GetxController {
     categoryDetailsModelList.clear();
     CategoryDetailsModel categoryDetailsModel = CategoryDetailsModel();
     categoryDetailsModel.categoryName = "Business";
-    categoryDetailsModel.image = "assets/images/business.svg";
+    categoryDetailsModel.image = "assets/images/business2.svg";
     categoryDetailsModelList.add(categoryDetailsModel);
 
     categoryDetailsModel = new CategoryDetailsModel();
@@ -64,12 +64,14 @@ class NewsController extends GetxController {
 
   /// get breaking news Data from server
   getSliderNewsData(context) async {
+    sliderList.clear();
     String url= Url.getSliderArticle;
     try {
-      // bool isDeviceConnected = await isConnected();
-      // if (!isDeviceConnected) {
-      //   return internetError(context, Strings.internetError);
-      // }
+      bool isDeviceConnected = await isConnected();
+      if (!isDeviceConnected) {
+        isLoading=false;
+        return internetError(context, Strings.internetError);
+      }
       var response = await http.get(
         Uri.parse(url), headers: {'Content-type': 'application/json', 'Accept': 'application/json'},
         // body: bodyJson,
@@ -102,14 +104,15 @@ class NewsController extends GetxController {
 
   ///get news Category data from server
   getNewsCategoryData(context, String category) async {
+    showCategoryModelList.clear();
     try {
-      // bool isDeviceConnected = await ApiServices.isConnected();
-      // if (!isDeviceConnected) {
-      //   isLoading=false;
-      //   return internetError(context, Strings.internetError);
-      //
-      // }
-      String url = "https://newsapi.org/v2/top-headlines?country=us&category=$category&apiKey=${Url.apikey}";
+      bool isDeviceConnected = await isConnected();
+      if (!isDeviceConnected) {
+        isLoading=false;
+        return internetError(context, Strings.internetError);
+
+      }
+      String url = "https://newsapi.org/v2/top-headlines?country=in&category=$category&apiKey=${Url.apikey}";
       var response = await http.get(
         Uri.parse(url), headers: {'Content-type': 'application/json', 'Accept': 'application/json'},
         // body: bodyJson,
@@ -142,14 +145,15 @@ class NewsController extends GetxController {
 
   ///get trending news from server
   getNewsArticlesData(context) async {
+    articleModelList.clear();
     String url= Url.getNewsArticle;
     try {
-      // bool isDeviceConnected = await ApiServices.isConnected();
-      // if (!isDeviceConnected) {
-      //   isLoading=false;
-      //   return internetError(context, Strings.internetError);
-      //
-      // }
+      bool isDeviceConnected = await isConnected();
+      if (!isDeviceConnected) {
+        isLoading=false;
+        return internetError(context, Strings.internetError);
+
+      }
       var response = await http.get(
         Uri.parse(url), headers: {'Content-type': 'application/json', 'Accept': 'application/json'},
         // body: bodyJson,

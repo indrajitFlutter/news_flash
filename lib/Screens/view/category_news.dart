@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:news_flash/commonWidgets/alert_message.dart';
+import 'package:news_flash/commonWidgets/custom_web_view.dart';
 
 import '../controller/news_controller.dart';
 
@@ -17,6 +19,7 @@ class _CategoryNewsState extends State<CategoryNews> {
   var controller = Get.find<NewsController>();
   @override
   void initState() {
+    // controller.showCategoryModelList.clear();
     controller.getNewsCategoryData(context, widget.name.toLowerCase());
     super.initState();
   }
@@ -34,12 +37,12 @@ class _CategoryNewsState extends State<CategoryNews> {
               ),
               centerTitle: true,
             ),
-            body: controller.isLoading?const CircularProgressIndicator(color: Colors.green,):SizedBox(
+            body: controller.showCategoryModelList.isEmpty?const Center(child: CircularProgressIndicator()):SizedBox(
               child:ListView.builder(
                 shrinkWrap: true,
                 itemCount: controller.showCategoryModelList.length,
                 itemBuilder: (context, index) {
-                  return ShowCategory(controller.showCategoryModelList[index].url, title: controller.showCategoryModelList[index].title!, desc: controller.showCategoryModelList[index].description!, image: controller.showCategoryModelList[index].urlToImage!);
+                  return ShowCategory(url:controller.showCategoryModelList[index].url!, title: controller.showCategoryModelList[index].title!, desc: controller.showCategoryModelList[index].description!, image: controller.showCategoryModelList[index].urlToImage!);
                 },)
               ,
             ),
@@ -50,9 +53,9 @@ class _CategoryNewsState extends State<CategoryNews> {
 }
 
 class ShowCategory extends StatelessWidget {
-  String image, desc, title;
+  String image, desc, title,url;
 
-  ShowCategory(String? url, {super.key, required this.title, required this.desc, required this.image});
+  ShowCategory({super.key, required this.title, required this.desc, required this.image,required this.url});
 
   @override
   Widget build(BuildContext context) {
@@ -69,10 +72,20 @@ class ShowCategory extends StatelessWidget {
               fit: BoxFit.cover,
             ),
           ),
-          const SizedBox(height:15),
-          Text(title,style: const TextStyle(fontSize: 18,fontWeight: FontWeight.w500),),
-          const SizedBox(height:5),
-          Text(desc,style: const TextStyle(fontSize: 14,),)
+          GestureDetector(
+            onTap: (){
+              Get.to(()=>CustomWebView(blogUrl:url ));
+            },
+            child: Column(
+              children: [
+                const SizedBox(height:15),
+                Text(title,style: const TextStyle(fontSize: 18,fontWeight: FontWeight.w500),),
+                const SizedBox(height:5),
+                Text(desc,style: const TextStyle(fontSize: 14,),)
+              ],
+            ),
+          )
+
         ],
       ),
     );

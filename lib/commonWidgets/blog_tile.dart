@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'articals_view.dart';
+import 'custom_web_view.dart';
 
 class BlogTile extends StatelessWidget {
   String? imageUrl,title,desc,url;
@@ -12,7 +12,7 @@ class BlogTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: (){
-        Get.to(()=>ArticleView(blogUrl: url));
+        Get.to(()=>CustomWebView(blogUrl: url));
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 5),

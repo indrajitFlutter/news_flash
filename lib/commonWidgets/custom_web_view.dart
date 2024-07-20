@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-class ArticleView extends StatefulWidget {
+class CustomWebView extends StatefulWidget {
   final String? blogUrl;
 
-  const ArticleView({super.key, required this.blogUrl});
+  const CustomWebView({super.key, required this.blogUrl});
 
   @override
-  _ArticleViewState createState() => _ArticleViewState();
+  _CustomWebViewState createState() => _CustomWebViewState();
 }
 
-class _ArticleViewState extends State<ArticleView> {
+class _CustomWebViewState extends State<CustomWebView> {
   late WebViewController _controller;
-
+double loadingValue=0;
   @override
   void initState() {
     super.initState();

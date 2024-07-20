@@ -21,7 +21,7 @@ class CustomInfoText extends StatelessWidget {
       style: TextStyle(
         fontSize: fontSize,
         fontWeight: fontWeight,
-        color: color,
+        color: color==Colors.black54?null:color,
       ),
     );
   }

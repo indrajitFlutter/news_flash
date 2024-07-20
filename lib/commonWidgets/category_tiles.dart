@@ -19,23 +19,55 @@ class CategoryTiles extends StatelessWidget {
         child: Container(
           margin: const EdgeInsets.only(right: 10),
           child: Stack(
+            alignment: Alignment.center,
             children: [
-              ClipRect(child: SvgPicture.asset(image, fit: BoxFit.fill, width: 120, height: 60)),
-              Container(
-                  height: 70,
+              ClipRRect(
+                borderRadius: BorderRadius.circular(6),
+                child: SvgPicture.asset(
+                  image,
+                  fit: BoxFit.cover,
                   width: 120,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(6),
-                    color: Colors.black38,
+                  height: 70,
+                ),
+              ),
+              Container(
+                height: 70,
+                width: 120,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(6),
+                  color: Colors.black38,
+                ),
+                child: Center(
+                  child: Text(
+                    categoryName,
+                    style: const TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.bold),
                   ),
-                  child: Center(
-                      child: Text(
-                        categoryName,
-                        style: const TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.bold),
-                      ))),
+                ),
+              ),
             ],
           ),
         ),
+
+        // Container(
+        //   margin: const EdgeInsets.only(right: 10),
+        //   child: Stack(
+        //     children: [
+        //       ClipRect(child: SvgPicture.asset(image, fit: BoxFit.fill, width: 120, height: 60)),
+        //       Container(
+        //           height: 70,
+        //           width: 120,
+        //           decoration: BoxDecoration(
+        //             borderRadius: BorderRadius.circular(6),
+        //             color: Colors.black38,
+        //           ),
+        //           child: Center(
+        //               child: Text(
+        //                 categoryName,
+        //                 style: const TextStyle(color: Colors.white,fontSize: 15, fontWeight: FontWeight.bold),
+        //               ))),
+        //     ],
+        //   ),
+        // ),
       ),
     );
   }
